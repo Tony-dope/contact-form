@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/w3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f4f7e4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .success {
+            background-color:darkslategrey;
+            color: white;
+            border: 1px solid #c3e6cb;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            width: 32rem;
+            display: none;
+        }
+        .btn{
+            background-color: teal;
+            color: white;
+        }
+        .btn:hover{
+            background-color: darkslategrey;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="row justify-content-center">
+                    <div id="successMessage" class="success">
+                        <strong> <i class="bi bi-check-circle pe-2"></i>Message Sent!</strong> 
+                        <br>
+                        Thanks for completing the form. We'll be in touch soon!
+                    </div>
+                </div>
+                <div class="card shadow-4 p-3 mb-5 rounded-3">
+                    <form id="contactForm">
+                        <h2><b>Contact Us</b></h2>
+                        <div class="row pb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" class="form-control w3-hover-border-teal" id="firstName" name="firstName">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" class="form-control w3-hover-border-teal" id="lastName" name="lastName">
+                                    <div class="invalid-feedback">This field is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group pb-4">
+                            <label for="email">Email Address *</label>
+                            <input type="email" class="form-control w3-hover-border-teal" id="email" name="email">
+                            <div class="invalid-feedback">Please enter a valid email address</div>
+                        </div>
+                        <div class="row pb-3">
+                            <div class="form-group">
+                                <label class="pb-2">Query Type *</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                       <div class="border rounded p-2 w3-hover-border-teal">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="generalEnquiry" name="queryType" value="General Enquiry">
+                                            <label class="form-check-label" for="generalEnquiry">General Enquiry</label>
+                                        </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="border rounded p-2 w3-hover-border-teal">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="supportRequest" name="queryType" value="Support Request">
+                                                <label class="form-check-label" for="supportRequest">Support Request</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">Please select a query type</div>
+                        </div>
+                        <div class="pb-3">
+                            <div class="form-group">
+                                <label for="message" class="pb-2">Message *</label>
+                                <textarea class="form-control w3-hover-border-teal" style="height: 120px" id="message" name="message"></textarea>
+                                <div class="invalid-feedback">This field is required</div>
+                            </div>
+                        </div>
+                        <div class="pb-4">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="consent" name="consent">
+                                <label class="form-check-label" for="consent">I consent to being contacted by the team *</label>
+                                <div class="invalid-feedback">To submit this form, please consent to being contacted</div>
+                            </div>
+                        </div>
+                        <div class="row mx-2">
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const queryType = document.querySelector('input[name="queryType"]:checked');
+            const message = document.getElementById('message');
+            const consent = document.getElementById('consent');
+
+            if (firstName.value.trim() === '') {
+                isValid = false;
+                firstName.classList.add('is-invalid');
+            } else {
+                firstName.classList.remove('is-invalid');
+            }
+
+            if (lastName.value.trim() === '') {
+                isValid = false;
+                lastName.classList.add('is-invalid');
+            } else {
+                lastName.classList.remove('is-invalid');
+            }
+
+            if (email.value.trim() === '') {
+                isValid = false;
+                email.classList.add('is-invalid');
+            } else {
+                email.classList.remove('is-invalid');
+            }
+
+            if (!queryType) {
+                isValid = false;
+                document.querySelector('.form-check .invalid-feedback').style.display = 'block';
+            } else {
+                document.querySelector('.form-check .invalid-feedback').style.display = 'none';
+            }
+
+            if (message.value.trim() === '') {
+                isValid = false;
+                message.classList.add('is-invalid');
+            } else {
+                message.classList.remove('is-invalid');
+            }
+
+            if (!consent.checked) {
+                isValid = false;
+                consent.classList.add('is-invalid');
+            } else {
+                consent.classList.remove('is-invalid');
+            }
+
+            if (isValid) {
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset();
+            } else {
+                document.getElementById('successMessage').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
